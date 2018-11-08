@@ -2,6 +2,8 @@
         reference:
             http://www.runoob.com/cplusplus/cpp-tutorial.html
             https://zh.cppreference.com
+            http://www.cnblogs.com/haippy/p/3235560.html
+            http://www.cplusplus.com/reference
 */
 
 /*
