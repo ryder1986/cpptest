@@ -3,9 +3,15 @@
 #include "tool.h"
 #include "test.h"
 using namespace std;
+void fun1(int a,int b=2,int c=3)
+{
+    prt(info,"%d %d %d",a,b,c);
+}
 
 int main()
 {
+    fun1(1,5);
+
     cout << "Hello World!" << endl;
 
 #if 0
