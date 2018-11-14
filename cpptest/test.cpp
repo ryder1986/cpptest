@@ -27,3 +27,8 @@ Test::Test()
 
 //  int TestThread::testconst=17;
  int TestThread::testconst=18;
+ void Child::fun()
+ {
+     prt(info,"  child fun");
+
+ }

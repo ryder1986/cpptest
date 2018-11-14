@@ -187,6 +187,33 @@ public:
     //        prt(info,"b");  // prt(info,"get %c",c);
     //    }
 };
+class TestQuit
+{
+public:
+    int abc;
+    TestQuit()
+    {
+          prt(info,"test quit start");
+    }
+//    TestQuit(TestQuit&&)
+//    {
+
+//    }
+//    TestQuit && operator =(TestQuit &t)
+//    {
+//                return t;
+//    }
+
+    ~TestQuit()
+    {
+        prt(info,"quit");
+    }
+    TestQuit(TestQuit&& f) {}
+    TestQuit& operator=(TestQuit&& f) {
+        return *this;
+    }
+private:
+};
 class Test
 {
 public:
@@ -210,11 +237,58 @@ public:
                        prt(info,"real addr %p",addr);
                             delete addr;
     }
+    void fun1(TestQuit &&tq)
+    {
+       prt(info,"fun1");
+    }
+    void fun2(TestQuit tq)
+    {
+       prt(info,"fun1");
+    }
 
 private:
     Test1 *t1;
     int tst;
     // TestThread tt;
 };
+class Father{
+public:
+
+    Father()
+    {
+        a=5;
+        prt(info,"construct father");
+    }
+    ~Father()
+    {
+   prt(info,"destuct father");
+    }
+    virtual  void fun()
+    {
+        prt(info,"  father fun");
+
+    }
+private:
+public:
+    int a;
+};
+class Child:public Father{
+public:
+    int b;
+    Child()
+    {
+         // a = 6;
+      // Father * f= (Father *)this;
+
+        prt(info,"construct Child %d",a);
+      //    a = 6;
+    }
+    ~Child()
+    {
+        prt(info,"destuct child");
+    }
+    virtual  void fun();
+};
+
 
 #endif // TEST_H
