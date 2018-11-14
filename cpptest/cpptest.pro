@@ -7,7 +7,8 @@ SOURCES += main.cpp \
     test.cpp tool.cpp
 
 DISTFILES += \
-    readme.txt
+    readme.txt \
+    readme_qt.txt
 
 HEADERS += \
     test.h tool.h
