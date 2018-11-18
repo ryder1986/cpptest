@@ -16,3 +16,7 @@ unix{
 DEFINES+=IS_UNIX
 LIBS+=-lpthread
 }
+win32{
+DEFINES+=IS_WIN
+
+}

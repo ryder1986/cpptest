@@ -41,13 +41,51 @@ void test_vec()
     prt(info,"begin %d",*ss.begin());
 }
 #if 1
+
+
+
+
+
+template<typename T, int i = 1>
+class CComputeSomething {
+public:
+    typedef volatile T *retType; // 类型计算
+    enum {
+        retValume = i + CComputeSomething<T, i - 1>::retValume
+    }; // 数值计算，递归
+    static void f() {
+        std::cout << "CComputeSomething:i = " << i << " retValume = " << retValume << '\n';
+    }
+};
+
+//递归结束特例
+template<typename T>
+class CComputeSomething<T, 0> {
+public:
+    enum {
+        retValume = 0
+    };
+};
+template <typename T>
+class CComputingFunc {
+public:
+    static void f() { T::f(); }
+};
+
+int test_tem() {
+    CComputeSomething<int>::retType a = 0;
+    //这里的递归深度注意，不同编译器允许的最大深度不同,编译时添加 -ftemplate-depth=500来修改编译器允许的递归最大深度
+    CComputingFunc<CComputeSomething<int, 500>>::f();
+    return 0;
+}
 int main()
 {
     //fun1(1,5);
 
     cout << "start!" << endl;
-    Child c;
-    c.fun();
+    test_tem();
+//    Child c;
+//    c.fun();
 
 //     test_vec();
 //    char *buf;
