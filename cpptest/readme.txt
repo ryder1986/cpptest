@@ -4,6 +4,7 @@
             https://zh.cppreference.com
             http://www.cnblogs.com/haippy/p/3235560.html
             http://www.cplusplus.com/reference
+            https://www.cnblogs.com/chengjundu/p/8288774.html
 
             ? Folly是Facebook在2012年开源的一个C++11组件库。
 */
@@ -64,9 +65,9 @@
                 但是有些时候需要在该类函数中对类的数据成员进行赋值，这个时候就需要用到 mutable 关键字。
 
 */
-/*
-        lambda:  []()->returntype{}
 
+/*
+        lambda:  []()->return type{}
         []：默认不捕获任何变量；
         [=]：默认以值捕获所有变量；
         [&]：默认以引用捕获所有变量；
@@ -76,5 +77,31 @@
         [&, x]：默认以引用捕获所有变量，但是x是例外，通过值捕获；
         [this]：通过引用捕获当前对象（其实是复制指针）；
         [*this]：通过传值方式捕获当前对象
+/*
+    Design paterns
+    sington:
+        1.Only one instance in a program
+    observer:
+    factory:
+        1.It is just a switch
+    iterator:
+    note:
+        1.the F**k patern design is about how to generate/design class!
+        If you dont belive it useful ,dont give it a shit!
+*/
 
+/*
+    Boost
+*/
+
+/
+*
+ memory leak:
+    1.
+    2.
+    3
+ segment fault:
+    1.
+    2.
+    3
 */
