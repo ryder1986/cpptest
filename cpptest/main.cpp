@@ -78,12 +78,101 @@ int test_tem() {
     CComputingFunc<CComputeSomething<int, 500>>::f();
     return 0;
 }
+
+int test_move1(TestMove &md)
+{
+    prt(info,"func1 left start");
+    md.t[1]='c';
+    prt(info,"func1 left end");
+
+    prt(info,"addr22 %p",&md);
+
+}
+int test_move1(TestMove &&md)
+{
+       prt(info,"addr321 %p",&md);
+//    prt(info,"func1 right start");
+//    md.t[1]='d';
+//    prt(info,"func1 right end");
+//  //  TestMove ff=move(md);
+    prt(info,"addr %p",md.t);
+  TestMove &&ff=move(md);
+     prt(info,"addr321 %p",&md);
+ // md.t=NULL;
+  //    TestMove ppp=move(md);
+//     // TestMove ttt=ff;
+
+//    prt(info,"addr33 %p",&md);
+//    prt(info,"afetr move %c",md.t[1]);
+
+//    prt(info,"addr333 %p",&ff);
+
+//    prt(info,"func 1end with %c",ff.t[1]);
+
+}
+int test_move()
+{
+    prt(info,"func start");
+    TestMove t;
+    prt(info,"addr1 %p",&t);
+       prt(info,"addr %p",t.t);
+    test_move1(t);
+    prt(info,"addr2 %p",&t);
+
+    test_move1(std::move(t));
+    prt(info,"addr3 %p",&t);
+
+      t.t[1]='e';
+  //  prt(info,"func end with %c",t.t[1]);
+
+
+}
+Test101 get_test101()
+{
+        Test101 t101;
+    return t101;
+}
+void get_test102()
+{
+     static  Test101 t101;
+//    static Test101 t101;
+  //  return t101;
+}
+
+extern Test101 t101;
+void fun1()
+{
+    prt(info,"%p",&t101);
+   // Test101 s=move(t101);
+    Test101 s(move(t101));
+    s.buf[1]=3;
+     prt(info,"%d",s.test);
+    prt(info,"%p",&s);
+}
+
 int main()
 {
-    //fun1(1,5);
+    int abc;
+        fun1();
+   cout << "start!" << endl;
 
-    cout << "start!" << endl;
-    test_tem();
+   prt(info,"%p",&t101);
+
+
+   prt(info,"%d",t101.test);
+
+       t101.fun();
+   // Test101 t101=get_test101();
+  //  prt(info," %p",&t101);
+
+  //   get_test101();
+ //  get_test102();
+     //prt(info,"before tset move");
+   //   TestMove t;
+//    test_move();
+  //  prt(info,"after tset move");
+
+    //test_tem();
 //    Child c;
 //    c.fun();
 

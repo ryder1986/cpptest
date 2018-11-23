@@ -289,8 +289,85 @@ public:
     }
     virtual  void fun();
 };
+class TestMove{
+public:
+    TestMove()
+    {
+        t=new char[10];
+        prt(info,"test move begin");
+    }
+    ~TestMove()
+    {
+        //if(t)
+        delete t;
+        prt(info,"test move end %p ",this);
+    }
 
+    TestMove(TestMove &tt)
+    {
+        prt(info,"t old addr %p",tt.t);
 
+        t=tt.t;
+        prt(info,"t addr %p",t);
+        t=new char[10];
 
+        prt(info,"copy %p ",this);
+
+    }
+    TestMove(TestMove &&tt)
+    {
+        t=tt.t;
+
+        prt(info,"copy right %p ",this);
+
+    }
+    TestMove& operator =(TestMove tt)
+    {
+        prt(info,"=  %p ",this);
+        return tt;
+
+    }
+    TestMove operator =(TestMove &&tt)
+    {
+        prt(info,"= right %p ",this);
+
+        return tt;
+    }
+
+    char *t;
+
+};
+
+class Test101{
+public:
+    Test101()
+    {
+        test=99;
+        prt(info,"Test101 constr");
+        buf=new char(10);
+    }
+    ~Test101()
+    {
+        delete buf;
+        prt(info,"Test101 destru");
+    }
+//    Test101(Test101 &t)
+//    {
+//        prt(info,"copy");
+//    }
+     //Test101(Test101 &&t)=default;
+//    Test101(Test101 &&t)
+//    {
+//         prt(info,"copycopy");
+//         buf=t.buf;
+//    }
+    void fun()
+    {
+         prt(info,"Test101 fun");
+         buf[2]=3;
+    }
+    int test;
+    char *buf;
+};
 
 #endif // TEST_H
