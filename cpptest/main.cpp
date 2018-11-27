@@ -179,10 +179,13 @@ public:
 
 int main()
 {
-    Test123 t123;
-    Test123 t456;
-    t123=t456;
-    Test123 tmp(t456);
+  //  Test101 s=  move(t101);
+
+  fun1();
+//    Test123 t123;
+//    Test123 t456;
+//    t123=t456;
+//    Test123 tmp(t456);
 //    int abc;
 //        fun1();
 //   cout << "start!" << endl;

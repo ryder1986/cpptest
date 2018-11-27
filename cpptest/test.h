@@ -343,24 +343,24 @@ public:
     Test101()
     {
         test=99;
-        prt(info,"Test101 constr");
+        prt(info,"Test101 constr (%p)",this);
         buf=new char(10);
     }
     ~Test101()
     {
         delete buf;
-        prt(info,"Test101 destru");
+        prt(info,"Test101 destru (%p)",this);
     }
-//    Test101(Test101 &t)
-//    {
-//        prt(info,"copy");
-//    }
+    Test101(Test101 &t)
+    {
+        prt(info,"copy (%p)",this);
+    }
      //Test101(Test101 &&t)=default;
-//    Test101(Test101 &&t)
-//    {
-//         prt(info,"copycopy");
-//         buf=t.buf;
-//    }
+    Test101(Test101 &&t)
+    {
+         prt(info,"right copy(%p)",this);
+         buf=t.buf;
+    }
     void fun()
     {
          prt(info,"Test101 fun");
