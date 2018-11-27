@@ -149,19 +149,50 @@ void fun1()
      prt(info,"%d",s.test);
     prt(info,"%p",&s);
 }
+class Test123{
+public:
+    Test123()
+    {
+        prt(info,"c");
+    }
+    ~Test123()
+    {
+        prt(info,"d");
+    }
+    void print()
+    {
+
+    }
+    Test123(Test123&)
+    {
+        prt(info,"cp ");
+    }
+//    void operator =(Test123&)
+//    {
+//        prt(info,"op");
+//    }
+    void operator =(Test123)
+    {
+        prt(info,"op");
+    }
+};
 
 int main()
 {
-    int abc;
-        fun1();
-   cout << "start!" << endl;
+    Test123 t123;
+    Test123 t456;
+    t123=t456;
+    Test123 tmp(t456);
+//    int abc;
+//        fun1();
+//   cout << "start!" << endl;
 
-   prt(info,"%p",&t101);
+//   prt(info,"%p",&t101);
 
 
-   prt(info,"%d",t101.test);
+//   prt(info,"%d",t101.test);
 
-       t101.fun();
+//       t101.fun();
    // Test101 t101=get_test101();
   //  prt(info," %p",&t101);
 
