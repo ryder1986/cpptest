@@ -16,15 +16,15 @@ void test1()
     TestQuit tq;
     TestQuit &&ss=move(tq);
     tq.abc=1;
- //   test->fun1(move(tq));
+    //   test->fun1(move(tq));
     //Timer2 t2;
     //t2.AsyncWait(0,bind(&Test::fun1,test,placeholders::_1),ss);
     //t2.AsyncWait(0,bind(&Test::fun1,test,placeholders::_1),(tq));
     //test->fun1(move(tq));
     auto f=bind(&Test::fun1,test,placeholders::_1);
-     f(move(tq));
-  //  test->fun1(move(ss));
-   // thread([=](){f(move(tq));}).detach();
+    f(move(tq));
+    //  test->fun1(move(ss));
+    // thread([=](){f(move(tq));}).detach();
 
     // test->fun2((tq));
     prt(info,"abc %d",tq.abc);
@@ -35,9 +35,9 @@ void test_vec()
     ss.push_back(1);
     ss.push_back(2);
     ss.push_back(3);
-      prt(info,"sz  %d",ss.size());
+    prt(info,"sz  %d",ss.size());
     ss.erase(ss.begin());
- prt(info,"sz  %d",ss.size());
+    prt(info,"sz  %d",ss.size());
     prt(info,"begin %d",*ss.begin());
 }
 #if 1
@@ -90,24 +90,24 @@ int test_move1(TestMove &md)
 }
 int test_move1(TestMove &&md)
 {
-       prt(info,"addr321 %p",&md);
-//    prt(info,"func1 right start");
-//    md.t[1]='d';
-//    prt(info,"func1 right end");
-//  //  TestMove ff=move(md);
+    prt(info,"addr321 %p",&md);
+    //    prt(info,"func1 right start");
+    //    md.t[1]='d';
+    //    prt(info,"func1 right end");
+    //  //  TestMove ff=move(md);
     prt(info,"addr %p",md.t);
-  TestMove &&ff=move(md);
-     prt(info,"addr321 %p",&md);
- // md.t=NULL;
-  //    TestMove ppp=move(md);
-//     // TestMove ttt=ff;
+    TestMove &&ff=move(md);
+    prt(info,"addr321 %p",&md);
+    // md.t=NULL;
+    //    TestMove ppp=move(md);
+    //     // TestMove ttt=ff;
 
-//    prt(info,"addr33 %p",&md);
-//    prt(info,"afetr move %c",md.t[1]);
+    //    prt(info,"addr33 %p",&md);
+    //    prt(info,"afetr move %c",md.t[1]);
 
-//    prt(info,"addr333 %p",&ff);
+    //    prt(info,"addr333 %p",&ff);
 
-//    prt(info,"func 1end with %c",ff.t[1]);
+    //    prt(info,"func 1end with %c",ff.t[1]);
 
 }
 int test_move()
@@ -115,38 +115,38 @@ int test_move()
     prt(info,"func start");
     TestMove t;
     prt(info,"addr1 %p",&t);
-       prt(info,"addr %p",t.t);
+    prt(info,"addr %p",t.t);
     test_move1(t);
     prt(info,"addr2 %p",&t);
 
     test_move1(std::move(t));
     prt(info,"addr3 %p",&t);
 
-      t.t[1]='e';
-  //  prt(info,"func end with %c",t.t[1]);
+    t.t[1]='e';
+    //  prt(info,"func end with %c",t.t[1]);
 
 
 }
 Test101 get_test101()
 {
-        Test101 t101;
+    Test101 t101;
     return t101;
 }
 void get_test102()
 {
-     static  Test101 t101;
-//    static Test101 t101;
-  //  return t101;
+    static  Test101 t101;
+    //    static Test101 t101;
+    //  return t101;
 }
 
 extern Test101 t101;
 void fun1()
 {
     prt(info,"%p",&t101);
-   // Test101 s=move(t101);
+    // Test101 s=move(t101);
     Test101 s(move(t101));
     s.buf[1]=3;
-     prt(info,"%d",s.test);
+    prt(info,"%d",s.test);
     prt(info,"%p",&s);
 }
 class Test123{
@@ -167,93 +167,113 @@ public:
     {
         prt(info,"cp ");
     }
-//    void operator =(Test123&)
-//    {
-//        prt(info,"op");
-//    }
+    //    void operator =(Test123&)
+    //    {
+    //        prt(info,"op");
+    //    }
     void operator =(Test123)
     {
         prt(info,"op");
     }
 };
+void test_const()
+{
+    int a1=1;
+    int * const a5 = &a1;   ///non-const data,const pointer
+    int const * const a6 = &a1;   ///const data,const pointer
+    const int * const a7 = &a1;   ///const data,const pointer
+}
+void test_ptr()
+{
+    int a1=3;
+ ///   unique_ptr<int> p(a1);
+   unique_ptr<int> p(new int (3));
+   //p.get()=5;
+   //prt(info,"%d",p[3]);
+}
 
 int main()
 {
-  //  Test101 s=  move(t101);
+    const TestConstClass tcc;
+  //  TestConstClass::fun_c();
+    //    /tcc.a=1;
+  //  tcc.fun_a();
+    test_ptr();
+    //  Test101 s=  move(t101);
+    // test_tem();
+    //fun1();
+    //    Test123 t123;
+    //    Test123 t456;
+    //    t123=t456;
+    //    Test123 tmp(t456);
+    //    int abc;
+    //        fun1();
+    //   cout << "start!" << endl;
 
-  fun1();
-//    Test123 t123;
-//    Test123 t456;
-//    t123=t456;
-//    Test123 tmp(t456);
-//    int abc;
-//        fun1();
-//   cout << "start!" << endl;
-
-//   prt(info,"%p",&t101);
+    //   prt(info,"%p",&t101);
 
 
-//   prt(info,"%d",t101.test);
+    //   prt(info,"%d",t101.test);
 
-//       t101.fun();
-   // Test101 t101=get_test101();
-  //  prt(info," %p",&t101);
+    //       t101.fun();
+    // Test101 t101=get_test101();
+    //  prt(info," %p",&t101);
 
-  //   get_test101();
- //  get_test102();
-     //prt(info,"before tset move");
-   //   TestMove t;
-//    test_move();
-  //  prt(info,"after tset move");
+    //   get_test101();
+    //  get_test102();
+    //prt(info,"before tset move");
+    //   TestMove t;
+    //    test_move();
+    //  prt(info,"after tset move");
 
     //test_tem();
-//    Child c;
-//    c.fun();
+    //    Child c;
+    //    c.fun();
 
-//     test_vec();
-//    char *buf;
-//    char *ss="1234";
-//    char *pp;
-//    memcpy(buf,ss,4);
+    //     test_vec();
+    //    char *buf;
+    //    char *ss="1234";
+    //    char *pp;
+    //    memcpy(buf,ss,4);
 
-//    test1();
+    //    test1();
 #if 0
     Test *test=new Test();
     PAUSE_HERE_3s
-    delete test;
+            delete test;
 #else
-//    vector <int> ccc;
-//   // ccc.reserve(10);
-//    ccc.resize(10);
-//    Test *test=new Test();
-//    TestQuit tq;
-//    tq.abc=1;
-//    test->fun1(move(tq));
-//    prt(info,"abc %d",tq.abc);
+    //    vector <int> ccc;
+    //   // ccc.reserve(10);
+    //    ccc.resize(10);
+    //    Test *test=new Test();
+    //    TestQuit tq;
+    //    tq.abc=1;
+    //    test->fun1(move(tq));
+    //    prt(info,"abc %d",tq.abc);
     //  prt(info,"test add r %p",test);
     //  delete test;
-   // DELETE_POINTER_LATER(Test *,test,1000);
-     //delete test;
-      //prt(info,"sss %p ok",test)
-   // test=(Test *)0x1;
-   // delete test;
-//    void *addr=test;
-//    delete addr;
-//      \
-//  thread([addr](){\
-//      this_thread::sleep_for(chrono::milliseconds(1000));\
-//      delete (Test*)addr;prt(info,"delete %p ok",addr);\
-//  }\
-//  ).detach();\
-//      \
-//  addr=NULL;\
+    // DELETE_POINTER_LATER(Test *,test,1000);
+    //delete test;
+    //prt(info,"sss %p ok",test)
+    // test=(Test *)0x1;
+    // delete test;
+    //    void *addr=test;
+    //    delete addr;
+    //      \
+    //  thread([addr](){\
+    //      this_thread::sleep_for(chrono::milliseconds(1000));\
+    //      delete (Test*)addr;prt(info,"delete %p ok",addr);\
+    //  }\
+    //  ).detach();\
+    //      \
+    //  addr=NULL;\
 
 
 
     prt(info,"ok pause");
 #endif
     PAUSE_HERE
-    return 0;
+            return 0;
 }
 
 #else
@@ -261,19 +281,19 @@ int main()
 class Point
 {
     int x, y;
-    public:
-        Point(int a, int b) { x=a; y=b;}
-        void MovePoint( int a, int b){ x+=a; y+=b;}
-        void print(){ cout<<"x="<<endl;}
+public:
+    Point(int a, int b) { x=a; y=b;}
+    void MovePoint( int a, int b){ x+=a; y+=b;}
+    void print(){ cout<<"x="<<endl;}
 
 
 };
 
 int main()
 {
-     Point point1( 10,10);
-     point1.MovePoint(2,2);
-     point1.print( );
-     return 1;
+    Point point1( 10,10);
+    point1.MovePoint(2,2);
+    point1.print( );
+    return 1;
 }
 #endif

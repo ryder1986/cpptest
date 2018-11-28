@@ -369,5 +369,36 @@ public:
     int test;
     char *buf;
 };
+class TestConstClass{
+public:
+    TestConstClass()
+    {
+
+    }
+    ~TestConstClass()
+    {
+
+    }
+  const  void fun_a() const
+    {
+        prt(info,"fun a ");
+     int bb= fun_b();
+     bb=3;
+    }
+    const  int fun_b() const
+    {
+        prt(info,"fun a ");
+        return b;
+    }
+    static void fun_c()
+    {
+        for(int i=0;i<10;i++){
+            prt(info,"in static fun");
+        }
+    }
+
+    int a;
+    int b;
+};
 
 #endif // TEST_H
